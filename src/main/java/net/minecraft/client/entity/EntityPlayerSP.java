@@ -1,5 +1,7 @@
 package net.minecraft.client.entity;
 
+import laurel.Blank;
+import laurel.event.impl.EventUpdate;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.MovingSoundMinecartRiding;
 import net.minecraft.client.audio.PositionedSoundRecord;
@@ -169,6 +171,20 @@ public class EntityPlayerSP extends AbstractClientPlayer
     {
         if (this.worldObj.isBlockLoaded(new BlockPos(this.posX, 0.0D, this.posZ)))
         {
+
+            // creating an instance of the event
+            EventUpdate eventUpdate = new EventUpdate();
+
+            // sending the event to the Event Handler (currently in Client class)
+            Blank.INSTANCE.onEvent(eventUpdate);
+
+            // main code "super.onUpdate()" is not being called if the event is cancelled
+            if (eventUpdate.isCanceled())
+                return;
+
+            // a little debug message
+            // System.out.println("Successfully called eventupdate!");
+
             super.onUpdate();
 
             if (this.isRiding())
