@@ -1,6 +1,7 @@
 package laurel.module;
 
 import laurel.module.impl.Flight;
+import laurel.module.impl.NoVelocity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +31,7 @@ public class ModuleManager {
         modules = new ArrayList<>();
 
         registerModule(new Flight());
+        registerModule(new NoVelocity());
     }
 
     // not really necessary but makes the code clearer

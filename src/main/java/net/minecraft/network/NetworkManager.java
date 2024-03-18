@@ -32,6 +32,9 @@ import java.net.SocketAddress;
 import java.util.Queue;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import javax.crypto.SecretKey;
+
+import laurel.Blank;
+import laurel.event.impl.EventPackedReceive;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.CryptManager;
@@ -146,13 +149,21 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet>
         this.closeChannel(chatcomponenttranslation);
     }
 
-    protected void channelRead0(ChannelHandlerContext p_channelRead0_1_, Packet p_channelRead0_2_) throws Exception
+    protected void channelRead0(ChannelHandlerContext p_channelRead0_1_, Packet packet) throws Exception
     {
         if (this.channel.isOpen())
         {
             try
             {
-                p_channelRead0_2_.processPacket(this.packetListener);
+
+                EventPackedReceive eventPackedReceive = new EventPackedReceive(packet);
+
+                Blank.INSTANCE.onEvent(eventPackedReceive);
+
+                if (eventPackedReceive.isCanceled())
+                    return;
+
+                packet.processPacket(this.packetListener);
             }
             catch (ThreadQuickExitException var4)
             {
