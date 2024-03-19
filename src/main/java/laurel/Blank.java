@@ -2,21 +2,28 @@ package laurel;
 
 import laurel.event.AbstractEvent;
 import laurel.event.impl.EventKey;
+import laurel.gui.GuiRenderer;
 import laurel.module.Module;
 import laurel.module.ModuleManager;
 
 public class Blank {
 
     public static final Blank INSTANCE = new Blank();
-    public static ModuleManager moduleManager;
+    private static ModuleManager moduleManager;
+    private static GuiRenderer guiRenderer;
 
     public static ModuleManager getModuleManager() {
         return moduleManager;
     }
 
+    public static GuiRenderer getGuiRenderer() {
+        return guiRenderer;
+    }
+
     // Called when minecraft has finished loading
     public final void init() {
         moduleManager = new ModuleManager();
+        guiRenderer = new GuiRenderer();
     }
 
     public void onEvent(AbstractEvent event) {
