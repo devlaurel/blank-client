@@ -4,13 +4,10 @@ import laurel.event.AbstractEvent;
 import laurel.event.impl.EventUpdate;
 import laurel.module.Module;
 import laurel.module.ModuleCategory;
-// import org.lwjgl.input.Keyboard;
 
 public class Flight extends Module {
     public Flight() {
         super("Flight", "Allows you to fly", ModuleCategory.MOVEMENT);
-
-        // setKey(Keyboard.KEY_3);
     }
 
     @Override

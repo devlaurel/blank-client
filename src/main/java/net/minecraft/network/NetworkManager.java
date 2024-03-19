@@ -34,7 +34,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 import javax.crypto.SecretKey;
 
 import laurel.Blank;
-import laurel.event.impl.EventPackedReceive;
+import laurel.event.impl.EventPacketReceive;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.CryptManager;
@@ -156,7 +156,7 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet>
             try
             {
 
-                EventPackedReceive eventPackedReceive = new EventPackedReceive(packet);
+                EventPacketReceive eventPackedReceive = new EventPacketReceive(packet);
 
                 Blank.INSTANCE.onEvent(eventPackedReceive);
 

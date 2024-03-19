@@ -1,7 +1,9 @@
 package laurel.module;
 
 import laurel.module.impl.Flight;
+import laurel.module.impl.NoJumpDelay;
 import laurel.module.impl.NoVelocity;
+import laurel.module.impl.Sprint;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,9 +34,11 @@ public class ModuleManager {
 
         registerModule(new Flight());
         registerModule(new NoVelocity());
+        registerModule(new NoJumpDelay());
+        registerModule(new Sprint());
     }
 
-    // not really necessary but makes the code clearer
+    // not really necessary but makes the code clearer  ... (dedicated to superblaubeere27)
     private void registerModule(Module module) {
         modules.add(module);
     }
