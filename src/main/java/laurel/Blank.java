@@ -5,6 +5,7 @@ import laurel.event.impl.EventKey;
 import laurel.gui.GuiRenderer;
 import laurel.module.Module;
 import laurel.module.ModuleManager;
+import laurel.util.font.FontUtils;
 
 public class Blank {
 
@@ -22,6 +23,7 @@ public class Blank {
 
     // Called when minecraft has finished loading
     public final void init() {
+        FontUtils.init();
         moduleManager = new ModuleManager();
         guiRenderer = new GuiRenderer();
     }
