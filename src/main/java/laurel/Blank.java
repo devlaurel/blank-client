@@ -3,9 +3,12 @@ package laurel;
 import laurel.event.AbstractEvent;
 import laurel.event.impl.EventKey;
 import laurel.gui.GuiRenderer;
+import laurel.gui.clickgui.dropdown.ClickGui;
 import laurel.module.Module;
 import laurel.module.ModuleManager;
 import laurel.util.font.FontUtils;
+import net.minecraft.client.Minecraft;
+import org.lwjgl.input.Keyboard;
 
 public class Blank {
 
@@ -38,6 +41,10 @@ public class Blank {
             getModuleManager().getModules().stream()
                     .filter(module -> module.getKey() == key)
                     .forEach(Module::toggle);
+
+            if (key == Keyboard.KEY_RSHIFT) {
+                Minecraft.getMinecraft().displayGuiScreen(ClickGui.INSTANCE);
+            }
         }
     }
 }
